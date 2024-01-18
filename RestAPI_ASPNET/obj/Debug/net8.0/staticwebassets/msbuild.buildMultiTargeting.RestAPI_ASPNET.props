@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\RestAPI_ASPNET.props" />
+</Project>
