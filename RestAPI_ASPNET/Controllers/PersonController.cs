@@ -5,7 +5,7 @@ using RestAPI_ASPNET.Services.Implementations;
 namespace RestAPI_ASPNET.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class PersonController : ControllerBase
     {
 
