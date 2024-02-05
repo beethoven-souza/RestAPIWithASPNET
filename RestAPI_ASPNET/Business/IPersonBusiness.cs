@@ -1,8 +1,8 @@
 ﻿using RestAPI_ASPNET.Model;
 
-namespace RestAPI_ASPNET.Services.Implementations
+namespace RestAPI_ASPNET.Business
 {
-    public interface IPersonService
+    public interface IPersonBusiness
     {
         Person Create(Person person);
         Person FindById(long id);
