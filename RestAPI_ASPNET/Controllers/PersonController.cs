@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using RestAPI_ASPNET.Business;
+using RestAPI_ASPNET.Data.VO;
 using RestAPI_ASPNET.Model;
 
 namespace RestAPI_ASPNET.Controllers
@@ -33,14 +34,14 @@ namespace RestAPI_ASPNET.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] Person person)
+        public IActionResult Post([FromBody] PersonVO person)
         {
             if (person == null) return BadRequest();
             return Ok(_personBusiness.Create(person));
         }
 
         [HttpPut]
-        public IActionResult Put([FromBody] Person person)
+        public IActionResult Put([FromBody] PersonVO person)
         {
             if (person == null) return BadRequest();
             return Ok(_personBusiness.Update(person));

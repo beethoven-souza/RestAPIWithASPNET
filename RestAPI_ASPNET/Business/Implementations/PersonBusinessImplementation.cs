@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
+using RestAPI_ASPNET.Data.Converter.Implementation;
+using RestAPI_ASPNET.Data.VO;
 using RestAPI_ASPNET.Model;
 using RestAPI_ASPNET.Model.Context;
 using RestAPI_ASPNET.Repository;
@@ -10,28 +12,34 @@ namespace RestAPI_ASPNET.Business.Implementations
     {
         private readonly IRepository<Person> _repository;
 
+        private readonly PersonConverter _converter;
         public PersonBusinessImplementation(IRepository<Person> repository)
         {
             _repository = repository;
+            _converter = new PersonConverter();
         }
-        public List<Person> FindAll()
+        public List<PersonVO> FindAll()
         {
-            return _repository.FindAll();
-        }
-
-        public Person FindById(long id)
-        {
-            return _repository.FindById(id);
+            return _converter.Parse(_repository.FindAll());
         }
 
-        public Person Create(Person person)
+        public PersonVO FindById(long id)
         {
-            return _repository.Create(person);
+            return _converter.Parse(_repository.FindById(id));
         }
 
-        public Person Update(Person person)
+        public PersonVO Create(PersonVO person)
         {
-            return _repository.Update(person);
+            var personEntity = _converter.Parse(person);
+            personEntity = _repository.Create(personEntity);
+            return _converter.Parse(personEntity);
+        }
+
+        public PersonVO Update(PersonVO person)
+        {
+            var personEntity = _converter.Parse(person);
+            personEntity = _repository.Update(personEntity);
+            return _converter.Parse(personEntity);
         }
 
         public void Delete(long id)
