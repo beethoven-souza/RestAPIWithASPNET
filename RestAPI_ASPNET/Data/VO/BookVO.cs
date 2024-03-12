@@ -1,9 +1,11 @@
-﻿using RestAPI_ASPNET.Model.Base;
+﻿using RestAPI_ASPNET.Hypermedia;
+using RestAPI_ASPNET.Hypermedia.Abstract;
+using RestAPI_ASPNET.Model.Base;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RestAPI_ASPNET.Data.VO
 {
-    public class BookVO
+    public class BookVO : ISupporstHyperMedia
     {
         public long Id { get; set; }
 
@@ -14,5 +16,6 @@ namespace RestAPI_ASPNET.Data.VO
         public decimal Price { get; set; }
 
         public string Title { get; set; }
+        public List<HyperMediaLink> Links { get; set; } = new List<HyperMediaLink>();
     }
 }

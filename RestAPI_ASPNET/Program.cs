@@ -2,8 +2,11 @@ using EvolveDb;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Net.Http.Headers;
 using RestAPI_ASPNET.Business;
 using RestAPI_ASPNET.Business.Implementations;
+using RestAPI_ASPNET.Hypermedia.Enricher;
+using RestAPI_ASPNET.Hypermedia.Filters;
 using RestAPI_ASPNET.Model.Context;
 using RestAPI_ASPNET.Repository;
 using RestAPI_ASPNET.Repository.Generic;
@@ -48,6 +51,27 @@ void MigrationDataBase(string conection)
 };
 
 
+//============================================================================================================================
+//Content Negociation
+//Usando o Software PostMan, pare visualizar em XML, na aba Headers informar a Key = Accept; e; Value = application/xml
+//e no final desse trecho de código descomentar o .AddXmlSerializerFormatters();
+//No navegador tambem ira retornar o arquivo xml
+builder.Services.AddMvc(Options =>
+{
+	Options.RespectBrowserAcceptHeader = true;
+
+	Options.FormatterMappings.SetMediaTypeMappingForFormat("json", MediaTypeHeaderValue.Parse("application/json"));
+	Options.FormatterMappings.SetMediaTypeMappingForFormat("xml", MediaTypeHeaderValue.Parse("application/xml"));
+});
+//.AddXmlSerializerFormatters();
+//============================================================================================================================
+
+
+var filterOptions = new HyperMediaFilterOptions();
+filterOptions.ContentResponseEnricherList.Add(new PersonEnricher());
+filterOptions.ContentResponseEnricherList.Add(new BookEnricher());
+builder.Services.AddSingleton(filterOptions); 
+
 //Injeção de dependencia
 builder.Services.AddScoped<IPersonBusiness, PersonBusinessImplementation>();
 builder.Services.AddScoped<IBookBusiness, BookBusinessImplementation>();
@@ -65,5 +89,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapControllerRoute("DefaultApi", "{controller=values}/{id?}");
 
 app.Run();
