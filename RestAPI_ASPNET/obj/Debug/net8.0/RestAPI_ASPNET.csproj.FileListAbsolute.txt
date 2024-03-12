@@ -272,3 +272,8 @@ C:\Projetos\RestAPIWithASPNET\RestAPI_ASPNET\obj\Debug\net8.0\refint\RestAPI_ASP
 C:\Projetos\RestAPIWithASPNET\RestAPI_ASPNET\obj\Debug\net8.0\RestAPI_ASPNET.pdb
 C:\Projetos\RestAPIWithASPNET\RestAPI_ASPNET\obj\Debug\net8.0\RestAPI_ASPNET.genruntimeconfig.cache
 C:\Projetos\RestAPIWithASPNET\RestAPI_ASPNET\obj\Debug\net8.0\ref\RestAPI_ASPNET.dll
+C:\Projetos\RestAPIWithASPNET\RestAPI_ASPNET\bin\Debug\net8.0\Microsoft.OpenApi.dll
+C:\Projetos\RestAPIWithASPNET\RestAPI_ASPNET\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Projetos\RestAPIWithASPNET\RestAPI_ASPNET\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Projetos\RestAPIWithASPNET\RestAPI_ASPNET\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Projetos\RestAPIWithASPNET\RestAPI_ASPNET\obj\Debug\net8.0\RestAPI_ASPNET.MvcApplicationPartsAssemblyInfo.cs

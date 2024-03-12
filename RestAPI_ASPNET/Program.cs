@@ -1,8 +1,10 @@
 using EvolveDb;
+using Microsoft.AspNetCore.Rewrite;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Net.Http.Headers;
+using Microsoft.OpenApi.Models;
 using RestAPI_ASPNET.Business;
 using RestAPI_ASPNET.Business.Implementations;
 using RestAPI_ASPNET.Hypermedia.Enricher;
@@ -70,7 +72,23 @@ builder.Services.AddMvc(Options =>
 var filterOptions = new HyperMediaFilterOptions();
 filterOptions.ContentResponseEnricherList.Add(new PersonEnricher());
 filterOptions.ContentResponseEnricherList.Add(new BookEnricher());
-builder.Services.AddSingleton(filterOptions); 
+builder.Services.AddSingleton(filterOptions);
+
+
+builder.Services.AddSwaggerGen(c => {
+	c.SwaggerDoc("v1",
+				new OpenApiInfo
+				{
+					Title = "Rest API's ASP.NET.",
+					Version = "v1",
+					Description = "Criação de API REST com ASP.NET.",
+					Contact = new OpenApiContact
+					{
+						Name = "Beethoven",
+						Url = new Uri("https://github.com/beethoven-souza")
+					}
+				});
+});
 
 //Injeção de dependencia
 builder.Services.AddScoped<IPersonBusiness, PersonBusinessImplementation>();
@@ -89,6 +107,16 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseSwagger();
+
+app.UseSwaggerUI(c => {
+	c.SwaggerEndpoint("/swagger/v1/swagger.json",
+					"Rest API's ASP.NET - v1."); });
+
+var option = new RewriteOptions();
+option.AddRedirect("^$","swagger");
+app.UseRewriter(option);
 
 app.MapControllerRoute("DefaultApi", "{controller=values}/{id?}");
 
