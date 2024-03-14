@@ -277,3 +277,4 @@ C:\Projetos\RestAPIWithASPNET\RestAPI_ASPNET\bin\Debug\net8.0\Swashbuckle.AspNet
 C:\Projetos\RestAPIWithASPNET\RestAPI_ASPNET\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Projetos\RestAPIWithASPNET\RestAPI_ASPNET\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Projetos\RestAPIWithASPNET\RestAPI_ASPNET\obj\Debug\net8.0\RestAPI_ASPNET.MvcApplicationPartsAssemblyInfo.cs
+C:\Projetos\RestAPIWithASPNET\RestAPI_ASPNET\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
