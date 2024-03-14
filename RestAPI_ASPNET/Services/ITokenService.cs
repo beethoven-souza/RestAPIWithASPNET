@@ -2,7 +2,7 @@
 
 namespace RestAPI_ASPNET.Services
 {
-    public interface ITokenInterface
+    public interface ITokenService
     {
         string GenerateAcessToken(IEnumerable<Claim> claims);
         string GenerateRefreshToken();
